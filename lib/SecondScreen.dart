@@ -1,8 +1,8 @@
-//import 'package:flash_chat/main.dart';
+import 'package:celeb_project/ThirdScreen.dart';
 import 'package:flutter/material.dart';
-//import 'FirstScreen.dart';
-import 'ThirdScreen.dart';
 import './MyProgressIndicator.dart';
+//import 'SplashScreen.dart';
+//import 'FirstScreen.dart';
 class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,16 @@ class ChipsDemo extends StatefulWidget {
 }
 class _ChipsDemoState extends State<ChipsDemo> {
   var thumbType=["Films", "Psychology", "Politics", "Communication Skills", "Health",
-    "Mindfulness", "Money & Investments", "Technology", "Education","Religion","Parenting","Creavity"];
+    "Mindfulness", "Money & Investments", "Technology", "Education","Religion","Parenting","Creativity"];
   List<bool> selectedList=[];
   List<String> selectedInterests=[];
+  TextEditingController nameController = TextEditingController();
+   MySecondScreenOnPressed(BuildContext context,myNextScreen){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ThirdScreen()),);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +35,9 @@ class _ChipsDemoState extends State<ChipsDemo> {
           padding: EdgeInsets.only(left: 25, right: 8),),
         leadingWidth: 38,
         title: MyProgressIndicator.MyAppBarTitle(2,3),
-        actions: <Widget>[
-          MyProgressIndicator.MyAppBarSkipButton(),
-        ],
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(6.0),
-          child: MyProgressIndicator(currentstep:2,totalsteps: 3, ),
+          child: MyProgressIndicator(currentstep:2,totalsteps:3,),
         ),
       ),
 
@@ -44,36 +48,54 @@ class _ChipsDemoState extends State<ChipsDemo> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 32, 0, 32),
                 child: const Text(
-                  'Choose your Interests',
-                  style: TextStyle(fontSize: 24,
+                  'Choose your interests',
+                  style: TextStyle(
+                    fontSize: 24,
                     fontFamily: 'SFProDisplay',
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w200,
                     color: Colors.black,
                   ),
                 ),
               )
           ),
 
-          Wrap(
-            children: [
-              for(int i=0;i<thumbType.length;i++) _listItem(i)
-            ],
+
+        Container(child: const Text("This will help us to more accurately recommend content.",textAlign: TextAlign.left,style: TextStyle(color: Color.fromRGBO(118, 118, 118,0.7),  fontFamily: 'SFProDisplay',
+          fontSize: 19.0,),), margin: const EdgeInsets.all(10.0),padding:const EdgeInsets.only(left:15,right:20,bottom:20)),
+
+          Container(
+            margin: const EdgeInsets.only(left: 10.0, right: 10.0),
+            child: Wrap(
+              children: [
+                for(int i=0;i<thumbType.length;i++) _listItem(i)
+              ],
+            ),
           ),
-          SizedBox(height: 156, width: 350,),
-          MyProgressIndicator.myElevatedButton('Next',ThirdScreen(),context),
+          SizedBox(height: 100, width: 350,),
+          MyProgressIndicator.myElevatedButton('Finish', ThirdScreen(),context),
         ],
       ),
-
     );
   }
   Widget _listItem(int i) {
     selectedList.add(false);
     return Container(
       child: Padding(
-        padding: const EdgeInsets.only(left: 20,right: 20,top: 0,bottom: 3),
+        padding: const EdgeInsets.only(left: 12,right: 6,top: 6,bottom: 14),//padding around chips
         child: FilterChip(
+          padding: EdgeInsets.symmetric(vertical: 11,horizontal: 4),//padding around text
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.0),
+            side: BorderSide(color: Color(0xffd0d0d6)),
+          ),
+          backgroundColor: Color(0xfffffffff),
+          selectedColor: Color(0xffeaf6f6),
           showCheckmark: false,
           label: Text(thumbType[i]),
+          labelStyle: TextStyle(
+            fontSize: 17,
+          ),
           selected: selectedList[i],
           onSelected: (bool value) {
             setState(() {
@@ -84,7 +106,8 @@ class _ChipsDemoState extends State<ChipsDemo> {
               }
               selectedList[i]=value;
               debugPrint("selected Interests :  $selectedInterests");
-            });
+            }
+            );
           },
         ),
       ),

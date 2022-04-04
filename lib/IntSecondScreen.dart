@@ -13,7 +13,7 @@ class ChipsDemo extends StatefulWidget {
 }
 class _ChipsDemoState extends State<ChipsDemo> {
   var thumbType=["Films", "Psychology", "Politics", "Communication Skills", "Health",
-    "Mindfulness", "Money & Investments", "Technology", "Education","Religion","Parenting","Creavity"];
+    "Mindfulness", "Money & Investments", "Technology", "Education","Religion","Parenting","Creativity"];
   List<bool> selectedList=[];
   List<String> selectedInterests=[];
   TextEditingController nameController = TextEditingController();
@@ -48,7 +48,7 @@ class _ChipsDemoState extends State<ChipsDemo> {
                   ),
                 ),
               )
-          ),
+            ),
           Container(
             width: 335.0,
             height: 48.0,
@@ -60,20 +60,7 @@ class _ChipsDemoState extends State<ChipsDemo> {
               ),
             ),
           ),
-          Container(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 32, 0, 32),
-                child: const Text(
-                  'Select the category of your interviews',
-                  style: TextStyle(fontSize: 20,
-                    fontFamily: 'SFProDisplay',
-                    fontWeight: FontWeight.w200,
-                    color: Colors.black,
-                  ),
-                ),
-              )
-          ),
+         // buildSFProTextContainer(),
           Container(
             margin: const EdgeInsets.only(left: 10.0, right: 10.0),
             child: Wrap(
@@ -88,6 +75,8 @@ class _ChipsDemoState extends State<ChipsDemo> {
       ),
     );
   }
+
+
   Widget _listItem(int i) {
     selectedList.add(false);
     return Container(

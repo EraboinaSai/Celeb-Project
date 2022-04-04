@@ -1,11 +1,13 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'FirstScreen.dart';
+
 class MyProgressIndicator extends StatelessWidget {
   int totalsteps = 1;
-  int currentstep = 1;
-  int previousColor= 0;
-  String direction = 'Next';
+ int currentstep = 1;
+ final int previousColor= 0;
+ final String direction = 'Next';
 
   static SizedBox buildSizedBox() {
     return SizedBox(
@@ -49,6 +51,24 @@ class MyProgressIndicator extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) =>  (myNextScreen)),);
           },),),);}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   MyProgressIndicator({ this.totalsteps = 3, this.currentstep = 4,});
   @override
   Widget build(BuildContext context) {
@@ -60,8 +80,6 @@ class MyProgressIndicator extends StatelessWidget {
       unselectedColor: Colors.white,
     );
   }
-
-
   static TextButton MyAppBarSkipButton() {
     return TextButton(
       onPressed: () {
